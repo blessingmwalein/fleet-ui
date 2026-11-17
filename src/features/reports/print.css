@@ -1,0 +1,98 @@
+/*
+ * Print / "Save as PDF" layout for report pages.
+ * Scoped to html.fc-report (set while a report page is mounted) so no other screen is affected.
+ * Strategy: unwind the app shell's fixed-height flex layout, hide chrome, force the light palette.
+ */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 9mm;
+  }
+
+  html.fc-report,
+  html.fc-report body,
+  html.fc-report #root {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #12161c !important;
+    color-scheme: light;
+    font-size: 11px;
+  }
+
+  /* light palette regardless of the active theme */
+  html.fc-report,
+  html.fc-report.dark {
+    --background: #fff;
+    --foreground: #12161c;
+    --card: #fff;
+    --card-foreground: #12161c;
+    --surface-2: #f7f8fa;
+    --surface-3: #edf0f3;
+    --muted-foreground: #4b5563;
+    --subtle-foreground: #6b7280;
+    --border: #d9dde4;
+    --border-strong: #c3c9d2;
+    --primary: #15803d;
+    --success: #15803d;
+    --warning: #b45309;
+    --danger: #b91c1c;
+    --info: #1d4ed8;
+    --chart-1: #16a34a;
+    --chart-2: #3a6fd8;
+    --chart-3: #d98f12;
+    --chart-4: #7c6ae6;
+    --chart-5: #1fa3b3;
+    --chart-6: #d93a37;
+    --chart-7: #7d8794;
+    --chart-8: #c5589f;
+    --chart-grid: #e6e9ee;
+    --chart-axis: #6b7280;
+  }
+
+  /* unwind AppShell: root > div.flex.h-dvh > [aside, div.flex-col > [header, main]] */
+  html.fc-report #root > div {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  html.fc-report #root > div > aside,
+  html.fc-report #root > div > a,
+  html.fc-report #root > div > div > header,
+  html.fc-report main nav[aria-label='Breadcrumb'],
+  html.fc-report [data-sonner-toaster] {
+    display: none !important;
+  }
+  html.fc-report #root > div > div {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  html.fc-report main {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  html.fc-report main > div {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+
+  html.fc-report .report-page {
+    max-width: none;
+    padding: 0;
+  }
+  html.fc-report .panel {
+    border-color: #d9dde4;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+  html.fc-report .recharts-responsive-container {
+    break-inside: avoid;
+  }
+  html.fc-report * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

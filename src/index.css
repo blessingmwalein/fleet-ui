@@ -1,0 +1,257 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist-mono";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — FleetCore enterprise system                          */
+/* Dark is the primary theme. Surfaces step up in elevation:            */
+/*   background < card (surface-1) < surface-2 < surface-3              */
+/* ------------------------------------------------------------------ */
+:root {
+  --radius: 0.5rem;
+
+  --background: #f2f4f7;
+  --foreground: #12161c;
+  --card: #ffffff;
+  --card-foreground: #12161c;
+  --surface-2: #f7f8fa;
+  --surface-3: #edf0f3;
+  --popover: #ffffff;
+  --popover-foreground: #12161c;
+  --muted: #edf0f3;
+  --muted-foreground: #5b6573;
+  --subtle-foreground: #8b94a1;
+  --border: #e0e4ea;
+  --border-strong: #cdd3dc;
+  --input: #d5dae2;
+  --ring: #16a34a;
+
+  --primary: #16a34a;
+  --primary-foreground: #ffffff;
+  --primary-soft: #16a34a1f;
+  --secondary: #edf0f3;
+  --secondary-foreground: #12161c;
+  --accent: #e6eaf0;
+  --accent-foreground: #12161c;
+
+  --info: #3a6fd8;
+  --success: #16a34a;
+  --warning: #cf820a;
+  --danger: #d93a37;
+  --destructive: #d93a37;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #3b4452;
+  --sidebar-border: #e0e4ea;
+
+  --chart-1: #16a34a;
+  --chart-2: #3a6fd8;
+  --chart-3: #d98f12;
+  --chart-4: #7c6ae6;
+  --chart-5: #1fa3b3;
+  --chart-6: #d93a37;
+  --chart-7: #7d8794;
+  --chart-8: #c5589f;
+  --chart-grid: #e6e9ee;
+  --chart-axis: #7d8794;
+
+  --shadow-pop: 0 8px 24px -6px rgb(15 23 42 / 0.18), 0 2px 6px -2px rgb(15 23 42 / 0.12);
+}
+
+.dark {
+  --background: #0c0e11;
+  --foreground: #e6e9ee;
+  --card: #12151a;
+  --card-foreground: #e6e9ee;
+  --surface-2: #181c22;
+  --surface-3: #1f242b;
+  --popover: #181c22;
+  --popover-foreground: #e6e9ee;
+  --muted: #1a1e24;
+  --muted-foreground: #8a93a1;
+  --subtle-foreground: #5f6876;
+  --border: #242a32;
+  --border-strong: #323943;
+  --input: #2b323b;
+  --ring: #34d17a;
+
+  --primary: #34d17a;
+  --primary-foreground: #04130a;
+  --primary-soft: #34d17a24;
+  --secondary: #1f242b;
+  --secondary-foreground: #e6e9ee;
+  --accent: #232931;
+  --accent-foreground: #e6e9ee;
+
+  --info: #6b9bf2;
+  --success: #34d17a;
+  --warning: #f2a93b;
+  --danger: #f0605d;
+  --destructive: #f0605d;
+
+  --sidebar: #0f1215;
+  --sidebar-foreground: #aab2be;
+  --sidebar-border: #20262d;
+
+  --chart-1: #34d17a;
+  --chart-2: #5b8def;
+  --chart-3: #f2a93b;
+  --chart-4: #9b8afb;
+  --chart-5: #2fb8c6;
+  --chart-6: #f0605d;
+  --chart-7: #8a93a1;
+  --chart-8: #d98bd0;
+  --chart-grid: #222830;
+  --chart-axis: #7d8794;
+
+  --shadow-pop: 0 10px 30px -6px rgb(0 0 0 / 0.6), 0 2px 8px -2px rgb(0 0 0 / 0.5);
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 3px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-info: var(--info);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-destructive: var(--destructive);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+  --color-chart-7: var(--chart-7);
+  --color-chart-8: var(--chart-8);
+
+  --shadow-pop: var(--shadow-pop);
+
+  --animate-pulse-ring: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-flash: flash 1.2s ease-out 1;
+
+  @keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 0.9; }
+    70%, 100% { transform: scale(2.4); opacity: 0; }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+  @keyframes flash {
+    0% { background-color: var(--primary-soft); }
+    100% { background-color: transparent; }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    font-size: 15px;
+    -webkit-text-size-adjust: 100%;
+    color-scheme: dark;
+  }
+  html:not(.dark) {
+    color-scheme: light;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased text-sm;
+    font-feature-settings: "cv11", "ss01", "tnum";
+    overscroll-behavior: none;
+  }
+  #root {
+    min-height: 100dvh;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+  /* Thin, unobtrusive scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 8px; border: 2px solid transparent; background-clip: content-box; }
+  *::-webkit-scrollbar-thumb:hover { background: var(--subtle-foreground); background-clip: content-box; border: 2px solid transparent; }
+  *::-webkit-scrollbar-track { background: transparent; }
+}
+
+@layer components {
+  /* Base surface used for every panel in the product. */
+  .panel {
+    @apply bg-card border border-border rounded-lg;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum", "cv11";
+  }
+  .label-xs {
+    @apply text-[11px] font-medium uppercase tracking-[0.06em] text-subtle-foreground;
+  }
+  .skeleton {
+    @apply rounded-md;
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 37%, var(--surface-2) 63%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s linear infinite;
+  }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* MapLibre theming                                                    */
+/* ------------------------------------------------------------------ */
+.maplibregl-map { font-family: var(--font-sans); }
+.maplibregl-ctrl-attrib { background: color-mix(in oklab, var(--card) 80%, transparent) !important; color: var(--muted-foreground) !important; font-size: 10px !important; border-radius: 6px 0 0 0; }
+.maplibregl-ctrl-attrib a { color: var(--muted-foreground) !important; }
+.maplibregl-popup-content { background: var(--popover) !important; color: var(--popover-foreground) !important; border: 1px solid var(--border); border-radius: 8px !important; box-shadow: var(--shadow-pop) !important; padding: 8px 10px !important; font-size: 12px; }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-bottom-color: var(--popover) !important; }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: var(--popover) !important; }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--popover) !important; }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--popover) !important; }
+.maplibregl-popup-close-button { color: var(--muted-foreground); }
+.maplibregl-canvas { outline: none; }
+
+/* Reduced motion: keep functional transitions, drop decorative loops */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-ring, .skeleton { animation: none !important; }
+}
